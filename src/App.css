@@ -1,0 +1,262 @@
+/* Core Styling Variables */
+:root {
+  --bg-dark: #080b11;
+  --panel-bg: rgba(255, 255, 255, 0.03);
+  --panel-border: rgba(255, 255, 255, 0.07);
+  --text-primary: #ffffff;
+  --text-secondary: #717d93;
+  --color-neon-purple: #8b5cf6;
+  --color-neon-cyan: #06b6d4;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  font-family: var(--font-family);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Base Wrapper & Animated Background Blobs */
+.calc-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.bg-blob {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  filter: blur(140px);
+  z-index: 1;
+  opacity: 0.35;
+  animation: float-around 15s infinite ease-in-out alternate;
+}
+
+.blob-purple {
+  background: var(--color-neon-purple);
+  top: 15%;
+  left: 20%;
+}
+
+.blob-cyan {
+  background: var(--color-neon-cyan);
+  bottom: 15%;
+  right: 20%;
+  animation-delay: -5s;
+}
+
+/* Glassmorphism Calculator Body Container */
+.calc-container {
+  position: relative;
+  z-index: 10;
+  width: 360px;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+}
+
+/* Decorative Window Frame Bar */
+.calc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.status-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.r { background: #ef4444; }
+.y { background: #f59e0b; }
+.g { background: #10b981; }
+
+.calc-title {
+  font-size: 0.7rem;
+  font-family: monospace;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+}
+
+/* Glowing Neon Display Screen */
+.calc-screen {
+  background: rgba(78, 75, 75, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  padding: 1.2rem 1.5rem;
+  text-align: right;
+  margin-bottom: 2rem;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.3);
+  
+}
+
+.calc-equation {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.calc-current {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* Calculator Grid Layout */
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+/* Master Button Styling */
+button {
+  background: rgba(103, 168, 128, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 1.1rem 0;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+/* Button Interaction Animations */
+button:hover {
+  background: rgba(0, 255, 81, 0.1);
+  border-color: rgba(1, 255, 26, 0.15);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(1px) scale(0.97);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Keypad Grid Spans */
+.grid-span-2 {
+  grid-column: span 2;
+}
+
+.grid-row-span-2 {
+  grid-row: span 2;
+  height: 100%;
+}
+
+/* Colorful Specialized Keys */
+.btn-operator {
+  background: rgba(6, 182, 212, 0.08);
+  border-color: rgba(6, 182, 212, 0.15);
+  color: var(--color-neon-cyan);
+}
+
+.btn-operator:hover {
+  background: var(--color-neon-cyan);
+  color: var(--bg-dark);
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+}
+
+.btn-action {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.btn-action:hover {
+  background: #ef4444;
+  color: white;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+}
+
+.btn-equals {
+  background: linear-gradient(135deg, var(--color-neon-purple), #6d28d9);
+  border: none;
+  color: white;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.btn-equals:hover {
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+  filter: brightness(1.1);
+}
+
+/* Keyframe Animations */
+@keyframes float-around {
+  0% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(40px, -60px) scale(1.1); }
+  100% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+/* Page Entry Smooth Motion */
+.slide-in {
+  animation: slideInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+/* Target the exact inner wrapper or input field of your screen */
+.calc-current {
+  font-size: 2.2rem;       /* Agar font abhi bhi kate to ise thoda kam karke 2rem kar sakte hain */
+  font-weight: 700;
+  color: var(--text-primary);
+  text-shadow: 0 0 10px rgba(9, 243, 107, 0.2);
+  
+  /* ─── CRITICAL FIXES FOR CLIP AND ALIGNMENT ─── */
+  line-height: 1.2;         /* Explicit height multi-line bounding box fix */
+  padding: 4px 8px;        /* Horizontal spaces padding inside the screen element */
+  display: block;          /* Element inline constraint removal */
+  width: 100%;             /* Ensure content uses horizontal boundary limit */
+  text-align: right;       /* Numbers perfectly right side baseline align */
+  overflow: visible;       /* Input numbers visual overflow clipping drop */
+}
+
+/* Spinner Arrows Removal (In case input type="number" is used) */
+.calc-current::-webkit-outer-spin-button,
+.calc-current::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
